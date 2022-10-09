@@ -10,12 +10,18 @@ CREATE TABLE customers
     email         VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE room_type
+(
+    id           NUMERIC PRIMARY KEY,
+    description  VARCHAR(500),
+    picture_name VARCHAR(30),
+    price        DECIMAL(5, 2) NOT NULL
+);
+
 CREATE TABLE rooms
 (
     number VARCHAR(2) PRIMARY KEY,
-    beds   NUMERIC       NOT NULL,
-    price  DECIMAL(5, 2) NOT NULL
-
+    beds   NUMERIC REFERENCES room_type (id)
 );
 
 CREATE TABLE reservations
@@ -26,6 +32,7 @@ CREATE TABLE reservations
     open        DATE NOT NULL,
     close       DATE NOT NULL
 );
+
 
 --changeset hotelbooking:202210081513
 
@@ -38,26 +45,30 @@ VALUES ('5e536974-54be-45fa-845f-33f38be7023a', 'Erki', 'Rei', '38809102124', 'e
 INSERT INTO customers (id, first_name, last_name, personal_code, email)
 VALUES ('b680108f-988d-4bcd-b2e5-33d91b84d0c0', 'Anna', 'Rebane', '47808102124', 'anna@gmail.com');
 
-INSERT INTO rooms (number, beds, price) VALUES ('1', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('2', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('3', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('4', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('5', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('6', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('7', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('8', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('9', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('10', 1, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('11', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('12', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('13', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('14', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('15', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('16', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('17', 2, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('18', 3, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('19', 3, 35.00);
-INSERT INTO rooms (number, beds, price) VALUES ('20', 3, 35.00);
+INSERT INTO room_type (id, description, picture_name, price) VALUES (1, 'One-bed room, shower, breakfast', '1.jpg', 35.00);
+INSERT INTO room_type (id, description, picture_name, price) VALUES (2, 'Two-beds room, shower, breakfast', '2.jpg', 50.00);
+INSERT INTO room_type (id, description, picture_name, price) VALUES (3, 'Three-beds room, Jakuzzi, breakfast', '3.jpg', 100.00);
+
+INSERT INTO rooms (number, beds) VALUES ('1', 1);
+INSERT INTO rooms (number, beds) VALUES ('2', 1);
+INSERT INTO rooms (number, beds) VALUES ('3', 1);
+INSERT INTO rooms (number, beds) VALUES ('4', 1);
+INSERT INTO rooms (number, beds) VALUES ('5', 1);
+INSERT INTO rooms (number, beds) VALUES ('6', 1);
+INSERT INTO rooms (number, beds) VALUES ('7', 1);
+INSERT INTO rooms (number, beds) VALUES ('8', 1);
+INSERT INTO rooms (number, beds) VALUES ('9', 1);
+INSERT INTO rooms (number, beds) VALUES ('10', 1);
+INSERT INTO rooms (number, beds) VALUES ('11', 2);
+INSERT INTO rooms (number, beds) VALUES ('12', 2);
+INSERT INTO rooms (number, beds) VALUES ('13', 2);
+INSERT INTO rooms (number, beds) VALUES ('14', 2);
+INSERT INTO rooms (number, beds) VALUES ('15', 2);
+INSERT INTO rooms (number, beds) VALUES ('16', 2);
+INSERT INTO rooms (number, beds) VALUES ('17', 2);
+INSERT INTO rooms (number, beds) VALUES ('18', 3);
+INSERT INTO rooms (number, beds) VALUES ('19', 3);
+INSERT INTO rooms (number, beds) VALUES ('20', 3);
 
 INSERT INTO reservations (id, customer_id, room, open, close)
 VALUES ('28d1111a-e42c-418f-9253-3c509839ce3c', '58fce113-5110-437c-b548-0750b01836f4', 1, '10-08-2022', '10-10-2022');
@@ -65,4 +76,5 @@ INSERT INTO reservations (id, customer_id, room, open, close)
 VALUES ('563b6b99-a251-427b-924b-3f661efa7643', 'b680108f-988d-4bcd-b2e5-33d91b84d0c0', 19, '10-10-2022', '10-15-2022');
 INSERT INTO reservations (id, customer_id, room, open, close)
 VALUES ('bd8761ee-f9b2-4479-a413-a40ba29e2de0', '5e536974-54be-45fa-845f-33f38be7023a', 11, '10-11-2022', '10-19-2022');
+
 

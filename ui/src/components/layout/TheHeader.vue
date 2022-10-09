@@ -1,9 +1,8 @@
 <template>
   <header>
     <nav>
-      <h1> <router-link to="/">Book a Room</router-link></h1>
+      <h1> <router-link to="/">Choose a Room</router-link></h1>
       <ul>
-        <li><router-link to="/rooms"> Rooms</router-link></li>
         <li><router-link to="/all-reservations"> Reservations</router-link></li>
       </ul>
     </nav>

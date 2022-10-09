@@ -1,7 +1,12 @@
 <template>
-  <dev>
-  <h1> ROOMS </h1>
-  </dev>
+  <div>
+  <section> <h1>ROOMS</h1></section>
+  <section>
+    <div class="controls"></div>
+    <button>Refresh</button>
+    <ul>LIST OF ROOMS</ul>
+  </section>
+  </div>
 </template>
 
 <script>
