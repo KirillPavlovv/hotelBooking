@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import RoomView from "@/views/RoomDetailsView";
 import Rooms from "@/views/RoomsView";
 import ReservationView from "@/views/ReservationView";
 import ReservationsListView from "@/views/ReservationsListView";
 import NotFound from "@/views/NotFound";
+import RoomDetailsView from "@/views/RoomDetailsView";
 
 Vue.use(VueRouter)
 
@@ -21,7 +21,7 @@ const routes = [
       {
         path: '/room',
         name: 'room',
-        component: RoomView,
+        component: RoomDetailsView,
       },
     ]
   },
