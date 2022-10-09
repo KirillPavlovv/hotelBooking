@@ -10,7 +10,7 @@ CREATE TABLE customers
     email         VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE room_type
+CREATE TABLE room_types
 (
     id           NUMERIC PRIMARY KEY,
     description  VARCHAR(500),
@@ -21,7 +21,7 @@ CREATE TABLE room_type
 CREATE TABLE rooms
 (
     number VARCHAR(2) PRIMARY KEY,
-    beds   NUMERIC REFERENCES room_type (id)
+    beds   NUMERIC REFERENCES room_types (id)
 );
 
 CREATE TABLE reservations
@@ -45,9 +45,9 @@ VALUES ('5e536974-54be-45fa-845f-33f38be7023a', 'Erki', 'Rei', '38809102124', 'e
 INSERT INTO customers (id, first_name, last_name, personal_code, email)
 VALUES ('b680108f-988d-4bcd-b2e5-33d91b84d0c0', 'Anna', 'Rebane', '47808102124', 'anna@gmail.com');
 
-INSERT INTO room_type (id, description, picture_name, price) VALUES (1, 'One-bed room, shower, breakfast', '1.jpg', 35.00);
-INSERT INTO room_type (id, description, picture_name, price) VALUES (2, 'Two-beds room, shower, breakfast', '2.jpg', 50.00);
-INSERT INTO room_type (id, description, picture_name, price) VALUES (3, 'Three-beds room, Jakuzzi, breakfast', '3.jpg', 100.00);
+INSERT INTO room_types (id, description, picture_name, price) VALUES (1, 'One-bed room, shower, breakfast', '1.jpg', 35.00);
+INSERT INTO room_types (id, description, picture_name, price) VALUES (2, 'Two-beds room, shower, breakfast', '2.jpg', 50.00);
+INSERT INTO room_types (id, description, picture_name, price) VALUES (3, 'Three-beds room, Jakuzzi, breakfast', '3.jpg', 100.00);
 
 INSERT INTO rooms (number, beds) VALUES ('1', 1);
 INSERT INTO rooms (number, beds) VALUES ('2', 1);

@@ -4,7 +4,8 @@
 
 <script>
 export default {
-  name: "ReservationsListView"
+  name: "ReservationsListView",
+
 }
 </script>
 
