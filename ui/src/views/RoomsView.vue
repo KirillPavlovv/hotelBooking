@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <a> TERE TULEMAST </a>
-  </div>
-
-
+  <dev>
+  <h1> ROOMS </h1>
+  </dev>
 </template>
 
 <script>
 export default {
-  name: "RoomsView"
+  name: "Rooms"
 }
 </script>
 
