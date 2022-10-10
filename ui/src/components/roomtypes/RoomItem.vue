@@ -1,9 +1,9 @@
 <template>
   <li>
-    <picture>{{picture}}</picture>
-    <h3> {{id}} - bed room </h3>
-    <h4> €{{ price}}/night </h4>
-    <div> {{description}}</div>
+<!--    <picture>{{ picture }}</picture>-->
+    <h3> {{ id }} - bed room </h3>
+    <h4> €{{ price }}/night </h4>
+    <div> {{ description }}</div>
     <div class="actions">
       <base-button link to="/reservation"> Book a room </base-button>
     </div>
