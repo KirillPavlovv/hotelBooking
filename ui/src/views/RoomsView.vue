@@ -2,22 +2,20 @@
   <div>
     <section><h1>ROOMS</h1></section>
     <section><h2>Check available days</h2></section>
-    <div class="row gx-3 mb-3">
-      <div class="col-6 py-2">
-        <label class="form-check-label" for="absenceStart">Starting from</label>
-        <input type="date" id="absenceStart" name="absenceStart" v-model="startReservation"
-               class="form-control">
+    <div>
+      <div class="form-control">
+        <label for="checkIn">Check-in</label>
+        <input type="date" id="checkIn" v-model="checkIn">
       </div>
-      <div class="col-6 py-2">
-        <label class="form-check-label" for="absenceEnd">Until</label>
-        <input type="date" id="absenceEnd" name="absenceEnd" v-model="endReservation"
-               class="form-control">
+      <div class="form-control">
+        <label for="checkOut">Check-out</label>
+        <input type="date" id="checkOut" v-model="checkOut">
       </div>
-      </div>
+    </div>
     <section>
       <base-card>
-      <div class="controls"></div>
-      <ul>
+        <div class="controls"></div>
+        <ul>
           <room-item v-for="room in roomTypes"
                      :key="room.id"
                      :id="room.id"
@@ -26,7 +24,7 @@
                      :price="room.price"
 
           ></room-item>
-      </ul>
+        </ul>
       </base-card>
     </section>
   </div>
@@ -40,13 +38,13 @@ export default {
   name: "Rooms",
   components: {
     BaseCard,
-    RoomItem
+    RoomItem,
   },
   data() {
     return {
       roomTypes: [],
-      startReservation: null,
-      endReservation: null,
+      checkIn: null,
+      checkOut: null,
     }
   },
 
