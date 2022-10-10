@@ -35,9 +35,7 @@ header a {
 
 a:active,
 a:hover,
-a.router-link-active {
-  border: 1px solid #f391e3;
-}
+
 
 h1 {
   margin: 0;
@@ -50,9 +48,7 @@ h1 a {
 
 h1 a:hover,
 h1 a:active,
-h1 a.router-link-active {
-  border-color: transparent;
-}
+
 
 header nav {
   width: 90%;
