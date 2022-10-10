@@ -1,6 +1,19 @@
 <template>
   <div>
     <section><h1>ROOMS</h1></section>
+    <section><h2>Check available days</h2></section>
+    <div class="row gx-3 mb-3">
+      <div class="col-6 py-2">
+        <label class="form-check-label" for="absenceStart">Starting from</label>
+        <input type="date" id="absenceStart" name="absenceStart" v-model="startReservation"
+               class="form-control">
+      </div>
+      <div class="col-6 py-2">
+        <label class="form-check-label" for="absenceEnd">Until</label>
+        <input type="date" id="absenceEnd" name="absenceEnd" v-model="endReservation"
+               class="form-control">
+      </div>
+      </div>
     <section>
       <base-card>
       <div class="controls"></div>
@@ -9,9 +22,10 @@
                      :key="room.id"
                      :id="room.id"
                      :description="room.description"
-                     :price="room.price"
                      :picture-name="room.pictureName"
-          ></room-item>>
+                     :price="room.price"
+
+          ></room-item>
       </ul>
       </base-card>
     </section>
@@ -31,6 +45,8 @@ export default {
   data() {
     return {
       roomTypes: [],
+      startReservation: null,
+      endReservation: null,
     }
   },
 

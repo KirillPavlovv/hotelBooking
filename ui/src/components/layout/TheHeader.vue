@@ -27,7 +27,7 @@ header {
 
 header a {
   text-decoration: none;
-  color: #f391e3;
+  color: #ffffff;
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border: 1px solid transparent;

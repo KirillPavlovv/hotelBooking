@@ -5,14 +5,16 @@
     <h4> €{{ price}}/night </h4>
     <div> {{description}}</div>
     <div class="actions">
-      <router-link to="/reservation"> Book a room </router-link>>
+      <base-button link to="/reservation"> Book a room </base-button>
     </div>
   </li>
 </template>
 
 <script>
+import BaseButton from "@/components/base/BaseButton";
 export default {
   name: "RoomItem",
+  components: {BaseButton},
   props: ['id', 'description', 'pictureName', 'price'],
   computed:{
 
