@@ -4,6 +4,7 @@
     <h3> {{ id }} - bed room </h3>
     <h4> €{{ price }}/night </h4>
     <div> {{ description }}</div>
+    <div> Available rooms: {{ roomsCount }}</div>
     <div class="actions">
       <base-button link to="/reservation"> Book a room </base-button>
     </div>
@@ -15,10 +16,7 @@ import BaseButton from "@/components/base/BaseButton";
 export default {
   name: "RoomItem",
   components: {BaseButton},
-  props: ['id', 'description', 'pictureName', 'price'],
-  computed:{
-
-  }
+  props: ['id', 'description', 'pictureName', 'price', 'roomsCount', 'checkIn', 'checkOut'],
 }
 </script>
 

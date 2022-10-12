@@ -6,10 +6,10 @@
         <section>
           <form @submit.prevent="submitForm">
             <div>
-              <label for="checkIn">Check-in: {{ reservation.checkIn }} </label>
+              <label for="checkIn">Check-in: {{ checkIn }} </label>
             </div>
             <div>
-              <label for="checkOut">Check-out: {{ reservation.checkOut }}</label>
+              <label for="checkOut">Check-out: {{ checkOut }}</label>
             </div>
             <div>
               <label for="stayLength">Total length of stay: </label>
@@ -45,6 +45,7 @@ import BaseCard from "@/components/base/BaseCard";
 export default {
   name: "ReservationView",
   components: {BaseCard, BaseButton},
+  props: ['checkIn', 'checkOut'],
   data() {
     return {
       reservation: {

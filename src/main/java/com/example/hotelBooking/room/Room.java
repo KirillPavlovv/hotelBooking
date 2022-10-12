@@ -1,18 +1,13 @@
-package com.example.hotelBooking.roomtypes;
+package com.example.hotelBooking.room;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.context.annotation.Configuration;
 
-
 @Data
 @Accessors(chain = true)
 @Configuration
-public class RoomType {
-
-    int id;
-    String description;
-    String pictureName;
-    double price;
-    int roomsCount;
+public class Room {
+    String number;
+    int beds;
 }
