@@ -12,8 +12,7 @@
           <label for="checkOut">Check-out</label>
           <input type="date" id="checkOut" v-model="checkOut">
         </div>
-        <button v-on:click="getAvailableRoomsCount"> CHECK </button>
-        <base-button v-on:click="getAvailableRoomsCount">Check available rooms</base-button>
+        <button v-on:click="getAvailableRoomsCount"> Check available rooms </button>
       </div>
     </base-card>
     <section>
@@ -38,12 +37,10 @@
 <script>
 import RoomItem from "@/components/roomtypes/RoomItem";
 import BaseCard from "@/components/base/BaseCard";
-import BaseButton from "@/components/base/BaseButton";
 
 export default {
   name: "Rooms",
   components: {
-    BaseButton,
     BaseCard,
     RoomItem,
   },
@@ -132,5 +129,26 @@ h3 {
 
 .invalid input {
   border: 1px solid red;
+}
+button,
+a {
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  background-color: #5f327a;
+  border: 1px solid #400a5d;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-right: 0.5rem;
+  display: inline-block;
+}
+
+a:hover,
+a:active,
+button:hover,
+button:active {
+  background-color: #270041;
+  border-color: #270041;
 }
 </style>

@@ -20,11 +20,11 @@ public class ReservationRepository {
 
 
     public List<BookedRoomsCount> getBookedNumbers(LocalDate checkIn, LocalDate checkOut) {
-        return jdbcTemplate.query("SELECT beds, count(beds) FROM rooms r JOIN reservations res on res.room = r.number\n" +
+        return jdbcTemplate.query("SELECT beds, count(beds) AS booked_rooms FROM rooms r JOIN reservations res on res.room = r.number\n" +
                 "WHERE (open + interval '1' day BETWEEN  :checkIn AND :checkOut)\n" +
                 "   OR (close - interval '1' day BETWEEN :checkIn AND :checkOut)\n" +
-                "OR (open < :checkIn AND close < :checkOut)\n" +
+                "OR (open < :checkIn AND :checkOut < close)\n" +
                 "GROUP BY beds\n" +
-                "ORDER BY beds;", Map.of("open", checkIn, "close", checkOut), new DataClassRowMapper<>(BookedRoomsCount.class));
+                "ORDER BY beds;", Map.of("checkIn", checkIn, "checkOut", checkOut), new DataClassRowMapper<>(BookedRoomsCount.class));
     }
 }

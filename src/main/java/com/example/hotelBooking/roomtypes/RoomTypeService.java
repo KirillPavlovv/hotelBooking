@@ -36,9 +36,11 @@ public class RoomTypeService {
             for (BookedRoomsCount bookedNumber : bookedNumbers) {
                 if (bookedNumber.getBeds() == roomType.getId()) {
                     roomType.setRoomsCount(roomRepository.getRoomsCount(roomType.getId()) - bookedNumber.getBookedRooms());
+                    break;
                 }
+                roomType.setRoomsCount(roomRepository.getRoomsCount(roomType.getId()));
             }
-            roomType.setRoomsCount(roomRepository.getRoomsCount(roomType.getId()));
+
         }
         return roomTypes;
     }
