@@ -40,7 +40,6 @@ public class RoomTypeService {
                 }
                 roomType.setRoomsCount(roomRepository.getRoomsCount(roomType.getId()));
             }
-
         }
         return roomTypes;
     }

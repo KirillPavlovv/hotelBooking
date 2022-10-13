@@ -17,6 +17,7 @@ public class RoomTypeController {
     public List<RoomType> getRoomTypes() {
         return roomTypeService.getRoomTypes();
     }
+
     @GetMapping("/available-rooms")
     public List<RoomType> getRoomTypes(@RequestParam String checkIn, @RequestParam String checkOut) {
         System.out.println("Privet");
