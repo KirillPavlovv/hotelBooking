@@ -30,6 +30,7 @@
               <label for="email">Email address</label>
               <input type="email" id="email" v-model.trim="reservation.email">
             </div>
+            <base-button link to="/rooms">Back</base-button>
             <base-button>Reserve</base-button>
           </form>
         </section>
@@ -49,8 +50,8 @@ export default {
   data() {
     return {
       reservation: {
-        checkIn: '',
-        checkOut: '',
+        checkIn: this.checkIn,
+        checkOut: this.checkOut,
         firstName: '',
         lastName: '',
         personalCode: '',

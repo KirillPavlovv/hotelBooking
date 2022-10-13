@@ -32,27 +32,6 @@ export default {
 </script>
 
 <style scoped>
-button,
-a {
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  font: inherit;
-  background-color: #5f327a;
-  border: 1px solid #400a5d;
-  color: white;
-  cursor: pointer;
-  border-radius: 30px;
-  margin-right: 0.5rem;
-  display: inline-block;
-}
-
-a:hover,
-a:active,
-button:hover,
-button:active {
-  background-color: #270041;
-  border-color: #270041;
-}
 
 .flat {
   background-color: transparent;

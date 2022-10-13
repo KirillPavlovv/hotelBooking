@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import baseCard from "@/components/base/BaseCard"
 import BaseButton from "@/components/base/BaseButton"
-
+import './assets/theme.css'
 Vue.config.productionTip = false
 
 new Vue({

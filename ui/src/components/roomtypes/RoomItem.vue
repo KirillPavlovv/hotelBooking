@@ -1,12 +1,11 @@
 <template>
   <li>
-<!--    <picture>{{ picture }}</picture>-->
     <h3> {{ id }} - bed room </h3>
     <h4> €{{ price }}/night </h4>
     <div> {{ description }}</div>
     <div> Available rooms: {{ roomsCount }}</div>
     <div class="actions">
-      <base-button link to="/reservation"> Book a room </base-button>
+      <base-button link to="/reservation" v-if="!(roomsCount === 0)"> Book a room </base-button>
     </div>
   </li>
 </template>
