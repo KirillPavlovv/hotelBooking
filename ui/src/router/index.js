@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ReservationView from "@/views/ReservationView";
 import ReservationsListView from "@/views/ReservationsListView";
 import NotFound from "@/views/NotFound";
 import RoomDetailsView from "@/views/RoomDetailsView";
@@ -25,11 +24,6 @@ const routes = [
         component: RoomDetailsView,
       },
     ]
-  },
-  {
-    path: '/reservation',
-    name: 'reservation',
-    component: ReservationView
   },
   {
     path: '/all-reservations',

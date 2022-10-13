@@ -26,6 +26,8 @@
                      :picture-name="room.pictureName"
                      :price="room.price"
                      :rooms-count="room.roomsCount"
+                     :check-in="checkIn"
+                     :check-out="checkOut"
           ></room-item>
         </ul>
       </base-card>

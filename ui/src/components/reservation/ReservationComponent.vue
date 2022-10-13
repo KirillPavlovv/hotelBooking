@@ -6,13 +6,10 @@
         <section>
           <form @submit.prevent="submitForm">
             <div>
-              <label for="checkIn">Check-in: {{ checkIn }} </label>
+              <label for="checkIn">Check-in: {{ reservation.checkIn }} </label>
             </div>
             <div>
-              <label for="checkOut">Check-out: {{ checkOut }}</label>
-            </div>
-            <div>
-              <label for="stayLength">Total length of stay: </label>
+              <label for="checkOut">Check-out: {{ reservation.checkOut }}</label>
             </div>
             <div class="form-control">
               <label for="firstName">First name</label>
@@ -30,7 +27,7 @@
               <label for="email">Email address</label>
               <input type="email" id="email" v-model.trim="reservation.email">
             </div>
-            <base-button link to="/rooms">Back</base-button>
+            <button v-on:click="closeReservationForm">Close</button>
             <base-button>Reserve</base-button>
           </form>
         </section>
@@ -42,11 +39,12 @@
 <script>
 import BaseButton from "@/components/base/BaseButton";
 import BaseCard from "@/components/base/BaseCard";
+import EventBus from "@/components/event-bus";
 
 export default {
   name: "ReservationView",
   components: {BaseCard, BaseButton},
-  props: ['checkIn', 'checkOut'],
+  props: ['checkIn', 'checkOut', 'id'],
   data() {
     return {
       reservation: {
@@ -55,14 +53,24 @@ export default {
         firstName: '',
         lastName: '',
         personalCode: '',
-        email: ''
-      }
+        email: '',
+        roomType: this.id,
+      },
     }
+
   },
   methods: {
     submitForm() {
       console.log(this.reservation)
-    }
+    },
+    closeReservationForm() {
+      EventBus.$emit('reservationFormClosed')
+    },
+  },
+  mounted() {
+    EventBus.$on('reservationData', data => {
+      this.reservation.roomType = data.id;
+    })
   }
 
 }
