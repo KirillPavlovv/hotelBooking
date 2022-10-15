@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import baseCard from "@/components/base/BaseCard"
-import BaseButton from "@/components/base/BaseButton"
 import './assets/theme.css'
 import {initFormatters} from '@/components/formatters'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -19,7 +18,6 @@ new Vue({
   BootstrapVue,
   IconsPlugin,
   baseCard,
-  BaseButton,
   router,
   store,
   render: h => h(App)
