@@ -33,7 +33,8 @@ public class ReservationRepository {
 
     public List<ReservationResponse> getReservations(LocalDate today) {
         return jdbcTemplate.query("""
-                SELECT first_name, last_name, r.room, r.open, r.close FROM customers c
+                SELECT r.id, first_name AS customerFirstName, last_name AS customerLastName, r.room AS roomNumber,
+                 r.open AS checkIn, r.close AS checkOut FROM customers c
                     JOIN reservations r ON (c.id=r.customer_id)
                     WHERE close >= DATE '2022-10-10';
                 """, Map.of("today", today), new DataClassRowMapper<>(ReservationResponse.class));

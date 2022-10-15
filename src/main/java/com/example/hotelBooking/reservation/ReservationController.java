@@ -20,6 +20,6 @@ public class ReservationController {
     }
     @GetMapping("/reservationsList")
     public List<ReservationResponse> getReservations() {
-       return reservationService.getReservations();
+        return reservationService.getReservations();
     }
 }
