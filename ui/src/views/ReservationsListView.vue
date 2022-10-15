@@ -6,7 +6,7 @@
         <div class="row">
           <h1> RESERVATIONS LIST </h1>
           <div>
-            <table class="table">
+            <b-table striped hover :items="items" class="table">
               <thead>
               <tr>
                 <th>{{ 'Customer' }}</th>
@@ -43,7 +43,7 @@
                 <!--              </tr>-->
               </template>
               </tbody>
-            </table>
+            </b-table>
           </div>
         </div>
       </div>
