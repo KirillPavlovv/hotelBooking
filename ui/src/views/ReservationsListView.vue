@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <div class="card mt-3 mb-3">
       <div class="card-body">
@@ -23,24 +22,6 @@
                   <td>{{ formatDate(reservation.checkIn) }}</td>
                   <td>{{ formatDate(reservation.checkOut) }}</td>
                 </tr>
-                <!--              <tr v-show="show === campaign.id" >-->
-                <!--                <td colspan="10" style="text-align: left">-->
-                <!--                  <p>Age: {{ filterSet.age }} </p>-->
-                <!--                  <p>Sex: {{ filterSet.sex }} </p>-->
-                <!--                  <p>Address: {{ filterSet.address }} </p>-->
-                <!--                  <p>Inner credit score: {{ filterSet.tangocustomerratingcolor }} </p>-->
-                <!--                  <p>Outer credit score: {{ filterSet.externalinfojsonforcreditratingcolor }} </p>-->
-                <!--                  <p>Has active contract: {{ filterSet.activecontracts }} </p>-->
-                <!--                  <p>Marketing consent: {{ filterSet.marketingConsent }} </p>-->
-                <!--                  <p>Product name: {{ filterSet.productname }} </p>-->
-                <!--                  <p>Months until contract end: {{ filterSet.contractendmonths }} </p>-->
-                <!--                  <p>Real estate owner: {{ filterSet.realestateowner }} </p>-->
-                <!--                  <p>Customer payment ability: {{ filterSet.customerpaymentability }} </p>-->
-                <!--                  <p>Number of dependents: {{ filterSet.numberofdependent }} </p>-->
-
-                <!--                  <button class="btn-primary btn-sm btn ml-1" >Use same filters</button>-->
-                <!--                </td>-->
-                <!--              </tr>-->
               </template>
               </tbody>
             </b-table>

@@ -16,6 +16,7 @@ public class RoomRepository {
 
     public int getRoomsCount(int beds) {
         return jdbcTemplate.queryForObject("""
-                SELECT COUNT(*) AS total_rooms FROM rooms WHERE beds = :beds;""", Map.of("beds", beds), Integer.class);
+                SELECT COUNT(*) AS total_rooms FROM rooms WHERE beds = :beds;
+                """, Map.of("beds", beds), Integer.class);
     }
 }
