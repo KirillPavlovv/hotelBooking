@@ -36,7 +36,8 @@ public class ReservationRepository {
                 SELECT r.id, first_name AS customerFirstName, last_name AS customerLastName, r.room AS roomNumber,
                  r.open AS checkIn, r.close AS checkOut FROM customers c
                     JOIN reservations r ON (c.id=r.customer_id)
-                    WHERE close >= DATE '2022-10-10';
+                    WHERE close >= DATE '2022-10-10'
+                    ORDER BY r.room;
                 """, Map.of("today", today), new DataClassRowMapper<>(ReservationResponse.class));
 
     }

@@ -19,3 +19,10 @@ button:active {
     background-color: #270041;
     border-color: #270041;
 }
+
+.btn-primary {
+    background-color: #5f327a !important;
+    border-color: #5f327a !important;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+}

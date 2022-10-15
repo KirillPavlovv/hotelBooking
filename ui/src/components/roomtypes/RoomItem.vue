@@ -5,7 +5,7 @@
     <div> {{ description }}</div>
     <div> Available rooms: {{ roomsCount }}</div>
     <div class="actions">
-      <button v-if="!(roomsCount === 0)" v-on:click="sendData"> Book a room </button>
+      <button class="btn btn-primary w-50 text-white mt-3" v-if="!(roomsCount === 0)" v-on:click="sendData"> Book a room </button>
     </div>
     <div class="reservation" v-if="showReservationForm">
       <reservation-component

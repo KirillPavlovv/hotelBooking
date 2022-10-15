@@ -3,16 +3,12 @@
     <section><h1>ROOMS</h1></section>
     <section><h2>Check available days</h2></section>
     <base-card>
-      <div>
-        <div class="form-control">
+      <div class="form-control">
           <label for="checkIn">Check-in</label>
-          <input type="date" id="checkIn" v-model="checkIn">
-        </div>
-        <div class="form-control">
+          <input type="date" id="checkIn" v-model="checkIn" class="mb-2">
           <label for="checkOut">Check-out</label>
           <input type="date" id="checkOut" v-model="checkOut">
-        </div>
-        <button v-on:click="getAvailableRoomsCount"> Check available rooms </button>
+        <button class="btn btn-primary w-100 text-white mt-3" v-on:click="getAvailableRoomsCount"> Check available rooms </button>
       </div>
     </base-card>
     <section>

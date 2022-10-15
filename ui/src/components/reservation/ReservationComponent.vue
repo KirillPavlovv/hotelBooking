@@ -6,29 +6,21 @@
         <section>
           <form @submit.prevent="submitForm">
             <div>
-              <label for="checkIn">Check-in: {{ reservation.checkIn }} </label>
-            </div>
-            <div>
-              <label for="checkOut">Check-out: {{ reservation.checkOut }}</label>
+              <label for="checkIn">Check-in: {{ formatDate(reservation.checkIn) }} </label>
+              <label for="checkOut">Check-out: {{ formatDate(reservation.checkOut) }}</label>
             </div>
             <div class="form-control">
               <label for="firstName">First name</label>
               <input type="text" id="firstName" v-model.trim="reservation.firstName">
-            </div>
-            <div class="form-control">
               <label for="lastName">Last name</label>
               <input type="text" id="lastName" v-model.trim="reservation.lastName">
-            </div>
-            <div class="form-control">
               <label for="personalCode">Personal Code</label>
               <input type="text" id="personalCode" v-model.trim="reservation.personalCode">
-            </div>
-            <div class="form-control">
               <label for="email">Email address</label>
               <input type="email" id="email" v-model.trim="reservation.email">
             </div>
-            <button v-on:click="closeReservationForm">Close</button>
-            <base-button>Reserve</base-button>
+            <button class="btn btn-primary w-25 text-white mt-3 mr-1" v-on:click="closeReservationForm">Close</button>
+            <button class="btn btn-primary w-25 text-white mt-3">Reserve</button>
           </form>
         </section>
       </base-card>
@@ -37,13 +29,12 @@
 </template>
 
 <script>
-import BaseButton from "@/components/base/BaseButton";
 import BaseCard from "@/components/base/BaseCard";
 import EventBus from "@/components/event-bus";
 
 export default {
   name: "ReservationView",
-  components: {BaseCard, BaseButton},
+  components: {BaseCard},
   props: ['checkIn', 'checkOut', 'id'],
   data() {
     return {

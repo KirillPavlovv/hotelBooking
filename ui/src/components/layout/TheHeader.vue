@@ -1,9 +1,9 @@
 <template>
   <header>
     <nav>
-      <h1> <router-link to="/">Choose a Room</router-link></h1>
+     <router-link to="/">Choose a Room</router-link>
       <ul>
-        <li><router-link to="/all-reservations"> Reservations</router-link></li>
+        <router-link to="/all-reservations"> Reservations</router-link>
       </ul>
     </nav>
   </header>
