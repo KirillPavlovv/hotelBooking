@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Accessors(chain = true)
 @Configuration
 public class Room {
-    String number;
+    int number;
     int beds;
 }

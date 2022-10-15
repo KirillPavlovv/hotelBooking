@@ -1,19 +1,18 @@
-package com.example.hotelBooking.reservation;
+package com.example.hotelBooking.customer;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
 @Accessors(chain = true)
 @Configuration
-public class Reservation {
+public class Customer {
     UUID id;
-    UUID customerId;
-    int room;
-    LocalDate open;
-    LocalDate close;
+    String firstName;
+    String lastName;
+    String personalCode;
+    String email;
 }

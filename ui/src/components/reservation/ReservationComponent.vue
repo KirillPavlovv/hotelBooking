@@ -61,8 +61,17 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log(this.reservation)
+      fetch('/reservation', {
+        credentials: 'include',
+        method: 'POST',
+        body: JSON.stringify(this.reservation),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+          .then(response => console.log(response))
     },
+
     closeReservationForm() {
       EventBus.$emit('reservationFormClosed')
     },

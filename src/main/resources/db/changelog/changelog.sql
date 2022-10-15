@@ -20,7 +20,7 @@ CREATE TABLE room_types
 
 CREATE TABLE rooms
 (
-    number VARCHAR(2) PRIMARY KEY,
+    number NUMERIC PRIMARY KEY,
     beds   NUMERIC REFERENCES room_types (id)
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE reservations
 (
     id          UUID PRIMARY KEY,
     customer_id UUID REFERENCES customers (id),
-    room        VARCHAR(2) REFERENCES rooms (number),
+    room        NUMERIC REFERENCES rooms (number),
     open        DATE NOT NULL,
     close       DATE NOT NULL
 );
@@ -49,26 +49,26 @@ INSERT INTO room_types (id, description, picture_name, price) VALUES (1, 'One-be
 INSERT INTO room_types (id, description, picture_name, price) VALUES (2, 'Two-beds room, shower, breakfast', '2.jpg', 50.00);
 INSERT INTO room_types (id, description, picture_name, price) VALUES (3, 'Three-beds room, Jakuzzi, breakfast', '3.jpg', 100.00);
 
-INSERT INTO rooms (number, beds) VALUES ('1', 1);
-INSERT INTO rooms (number, beds) VALUES ('2', 1);
-INSERT INTO rooms (number, beds) VALUES ('3', 1);
-INSERT INTO rooms (number, beds) VALUES ('4', 1);
-INSERT INTO rooms (number, beds) VALUES ('5', 1);
-INSERT INTO rooms (number, beds) VALUES ('6', 1);
-INSERT INTO rooms (number, beds) VALUES ('7', 1);
-INSERT INTO rooms (number, beds) VALUES ('8', 1);
-INSERT INTO rooms (number, beds) VALUES ('9', 1);
-INSERT INTO rooms (number, beds) VALUES ('10', 1);
-INSERT INTO rooms (number, beds) VALUES ('11', 2);
-INSERT INTO rooms (number, beds) VALUES ('12', 2);
-INSERT INTO rooms (number, beds) VALUES ('13', 2);
-INSERT INTO rooms (number, beds) VALUES ('14', 2);
-INSERT INTO rooms (number, beds) VALUES ('15', 2);
-INSERT INTO rooms (number, beds) VALUES ('16', 2);
-INSERT INTO rooms (number, beds) VALUES ('17', 2);
-INSERT INTO rooms (number, beds) VALUES ('18', 3);
-INSERT INTO rooms (number, beds) VALUES ('19', 3);
-INSERT INTO rooms (number, beds) VALUES ('20', 3);
+INSERT INTO rooms (number, beds) VALUES (1, 1);
+INSERT INTO rooms (number, beds) VALUES (2, 1);
+INSERT INTO rooms (number, beds) VALUES (3, 1);
+INSERT INTO rooms (number, beds) VALUES (4, 1);
+INSERT INTO rooms (number, beds) VALUES (5, 1);
+INSERT INTO rooms (number, beds) VALUES (6, 1);
+INSERT INTO rooms (number, beds) VALUES (7, 1);
+INSERT INTO rooms (number, beds) VALUES (8, 1);
+INSERT INTO rooms (number, beds) VALUES (9, 1);
+INSERT INTO rooms (number, beds) VALUES (10, 1);
+INSERT INTO rooms (number, beds) VALUES (11, 2);
+INSERT INTO rooms (number, beds) VALUES (12, 2);
+INSERT INTO rooms (number, beds) VALUES (13, 2);
+INSERT INTO rooms (number, beds) VALUES (14, 2);
+INSERT INTO rooms (number, beds) VALUES (15, 2);
+INSERT INTO rooms (number, beds) VALUES (16, 2);
+INSERT INTO rooms (number, beds) VALUES (17, 2);
+INSERT INTO rooms (number, beds) VALUES (18, 3);
+INSERT INTO rooms (number, beds) VALUES (19, 3);
+INSERT INTO rooms (number, beds) VALUES (20, 3);
 
 INSERT INTO reservations (id, customer_id, room, open, close)
 VALUES ('28d1111a-e42c-418f-9253-3c509839ce3c', '58fce113-5110-437c-b548-0750b01836f4', 1, '10-08-2022', '10-10-2022');

@@ -32,8 +32,6 @@ export default {
   methods: {
     async sendData() {
       this.showReservationForm = true;
-      console.log(this.checkIn)
-      console.log(this.checkOut)
       this.$emit('reservationData', this.checkIn, this.checkOut, this.id)
     },
   },

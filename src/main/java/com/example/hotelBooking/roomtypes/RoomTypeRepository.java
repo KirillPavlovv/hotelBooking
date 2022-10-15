@@ -16,7 +16,7 @@ public class RoomTypeRepository {
     }
 
     public List<RoomType> getRoomTypes() {
-        return jdbcTemplate.query("SELECT * FROM room_types", new DataClassRowMapper<>(RoomType.class));
+        return jdbcTemplate.query("""
+                SELECT * FROM room_types""", new DataClassRowMapper<>(RoomType.class));
     }
-
 }

@@ -20,7 +20,6 @@ public class RoomTypeController {
 
     @GetMapping("/available-rooms")
     public List<RoomType> getRoomTypes(@RequestParam String checkIn, @RequestParam String checkOut) {
-        System.out.println("Privet");
         return roomTypeService.getAvailableRoomsCount(checkIn, checkOut);
     }
 

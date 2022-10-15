@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Accessors(chain = true)
 @Configuration
 public class RoomType {
-
     int id;
     String description;
     String pictureName;
