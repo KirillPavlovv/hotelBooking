@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class ReservationRepository {
@@ -40,5 +41,10 @@ public class ReservationRepository {
                     ORDER BY r.room, r.open;
                 """, Map.of("today", today), new DataClassRowMapper<>(ReservationResponse.class));
 
+    }
+
+    public void deleteReservation(UUID id) {
+        jdbcTemplate.update("""
+                DELETE FROM reservations WHERE id=:id""", Map.of("id", id));
     }
 }

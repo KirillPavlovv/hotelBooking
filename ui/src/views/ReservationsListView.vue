@@ -3,7 +3,7 @@
     <div class="card mt-3 mb-3">
       <div class="card-body">
         <div class="row">
-          <h1> RESERVATIONS LIST </h1>
+          <h1> Reservations list </h1>
           <div>
             <b-table striped hover :items="items" class="table">
               <thead>
@@ -21,6 +21,18 @@
                   <td>{{ reservation.roomNumber }}</td>
                   <td>{{ formatDate(reservation.checkIn) }}</td>
                   <td>{{ formatDate(reservation.checkOut) }}</td>
+
+                  <td>
+
+                    <button class="btn btn-secondary w-100 text-white" type="button">
+                      <Icon name='pencil'/>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-secondary w-100 text-white" type="button" v-on:click="deleteReservation(reservation.id)">
+                      <Icon name='trash'/>
+                    </button>
+                  </td>
                 </tr>
               </template>
               </tbody>
@@ -34,8 +46,14 @@
 </template>
 
 <script>
+
+import Icon from "@/components/Icon";
+
 export default {
   name: "ReservationsListView",
+  components: {
+    Icon
+  },
   data() {
     return {
       reservationList: [],
@@ -51,6 +69,15 @@ export default {
             this.reservationList = data;
           })
           .catch(error => console.error(error))
+    },
+    deleteReservation(id) {
+      fetch('/deleteReservation?id=' + id,{
+        credentials: 'include',
+        method: 'DELETE'
+      })
+          .then(() => {
+            this.getAllReservations()
+          })
     },
   },
   mounted() {
