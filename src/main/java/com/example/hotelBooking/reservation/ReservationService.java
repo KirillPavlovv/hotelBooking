@@ -2,13 +2,14 @@ package com.example.hotelBooking.reservation;
 
 import com.example.hotelBooking.customer.Customer;
 import com.example.hotelBooking.customer.CustomerService;
-import com.example.hotelBooking.roomtypes.BookedRoomsCount;
+import com.example.hotelBooking.room.RoomRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -19,16 +20,14 @@ public class ReservationService {
     @Resource
     CustomerService customerService;
 
-    public HashMap<String, Integer> getReservationsByDate(LocalDate open, LocalDate close) {
-        reservationRepository.getBookedNumbers(open, close);
-        return null;
-    }
-
-    public void saveReservationRequest(ReservationRequest reservationRequest) {
+    public void saveReservation(ReservationRequest reservationRequest) {
         Customer customer = customerService.saveCustomer(reservationRequest);
         Reservation reservation = makeReservationObject(reservationRequest);
         reservation.setCustomerId(customer.getId());
-        List<BookedRoomsCount> bookedNumbers = reservationRepository.getBookedNumbers(reservationRequest.getCheckIn(), reservationRequest.getCheckOut());
+        List<Integer> freeNumbersList = reservationRepository.getFreeNumbersList(reservationRequest.getCheckIn(),
+                reservationRequest.getCheckOut(), reservationRequest.getRoomType());
+        Random random = new Random();
+        reservation.setRoom(freeNumbersList.get(random.nextInt(freeNumbersList.size())));
     }
 
     public Reservation makeReservationObject(ReservationRequest reservationRequest) {

@@ -31,7 +31,7 @@ public class RoomTypeService {
         LocalDate checkIn = LocalDate.parse(checkInStr);
         LocalDate checkOut = LocalDate.parse(checkOutStr);
         List<RoomType> roomTypes = roomTypeRepository.getRoomTypes();
-        List<BookedRoomsCount> bookedNumbers = reservationRepository.getBookedNumbers(checkIn, checkOut);
+        List<BookedRoomsCount> bookedNumbers = reservationRepository.getBookedNumbersCounts(checkIn, checkOut);
         for (RoomType roomType : roomTypes) {
             for (BookedRoomsCount bookedNumber : bookedNumbers) {
                 if (bookedNumber.getBeds() == roomType.getId()) {

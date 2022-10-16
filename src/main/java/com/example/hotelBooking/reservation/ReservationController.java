@@ -14,8 +14,8 @@ public class ReservationController {
     @Resource
     ReservationRepository reservationRepository;
     @PostMapping("/reservation")
-    public void saveReservationRequest(@RequestBody ReservationRequest reservationRequest) {
-        reservationService.saveReservationRequest(reservationRequest);
+    public void saveReservation(@RequestBody ReservationRequest reservationRequest) {
+        reservationService.saveReservation(reservationRequest);
     }
     @GetMapping("/reservationsList")
     public List<ReservationResponse> getReservations() {
