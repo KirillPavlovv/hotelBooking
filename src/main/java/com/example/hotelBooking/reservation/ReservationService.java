@@ -2,12 +2,11 @@ package com.example.hotelBooking.reservation;
 
 import com.example.hotelBooking.customer.Customer;
 import com.example.hotelBooking.customer.CustomerService;
-import com.example.hotelBooking.room.RoomRepository;
+import com.example.hotelBooking.room.Room;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -24,10 +23,11 @@ public class ReservationService {
         Customer customer = customerService.saveCustomer(reservationRequest);
         Reservation reservation = makeReservationObject(reservationRequest);
         reservation.setCustomerId(customer.getId());
-        List<Integer> freeNumbersList = reservationRepository.getFreeNumbersList(reservationRequest.getCheckIn(),
+        List<Room> freeNumbersList = reservationRepository.getFreeNumbersList(reservationRequest.getCheckIn(),
                 reservationRequest.getCheckOut(), reservationRequest.getRoomType());
         Random random = new Random();
-        reservation.setRoom(freeNumbersList.get(random.nextInt(freeNumbersList.size())));
+        reservation.setRoom(freeNumbersList.get(random.nextInt(freeNumbersList.size())).getNumber());
+        reservationRepository.saveReservation(reservation);
     }
 
     public Reservation makeReservationObject(ReservationRequest reservationRequest) {

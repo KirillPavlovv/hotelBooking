@@ -1,5 +1,6 @@
 package com.example.hotelBooking.reservation;
 
+import com.example.hotelBooking.room.Room;
 import com.example.hotelBooking.roomtypes.BookedRoomsCount;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -32,17 +33,17 @@ public class ReservationRepository {
                 new DataClassRowMapper<>(BookedRoomsCount.class));
     }
 
-    public List<Integer> getFreeNumbersList(LocalDate checkIn, LocalDate checkOut, int beds) {
+    public List<Room>  getFreeNumbersList(LocalDate checkIn, LocalDate checkOut, int beds) {
         return jdbcTemplate.query("""
-                SELECT array_agg(number)
-                FROM unnest((SELECT  array_agg(number) FROM rooms WHERE beds = :beds)::numeric[]) number
+                SELECT *
+                FROM unnest((SELECT  array_agg(number) FROM rooms WHERE beds = :beds)) number
                 LEFT JOIN unnest((SELECT array_agg(number) FROM rooms r JOIN reservations res on res.room = r.number
                                  WHERE ((open + interval '1' day BETWEEN :checkIn AND :checkOut)
                             OR (close - interval '1' day BETWEEN :checkIn AND :checkOut)
-                            OR (open < :checkIn AND :checkOut< close)) AND r.beds =:beds)::numeric[]) room
+                            OR (open < :checkIn AND :checkOut< close)) AND r.beds =:beds)) room
                 ON number=room
                 WHERE room IS NULL;
-                """, Map.of("checkIn", checkIn, "checkOut", checkOut, "beds", beds), new DataClassRowMapper<>(Integer.class) {
+                """, Map.of("checkIn", checkIn, "checkOut", checkOut, "beds", beds), new DataClassRowMapper<>(Room.class) {
         });
     }
 
@@ -60,5 +61,13 @@ public class ReservationRepository {
     public void deleteReservation(UUID id) {
         jdbcTemplate.update("""
                 DELETE FROM reservations WHERE id=:id""", Map.of("id", id));
+    }
+
+    public void saveReservation(Reservation reservation) {
+        jdbcTemplate.update("""
+                INSERT INTO reservations(id, customer_id, room, open, close)
+                VALUES(:id, :customerId, :room, :open, :close);
+                """, Map.of("id", reservation.getId(), "customerId", reservation.getCustomerId(),
+                "room", reservation.getRoom(), "open", reservation.getOpen(), "close", reservation.getClose()));
     }
 }
