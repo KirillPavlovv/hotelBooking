@@ -19,16 +19,16 @@ public class ValidationService {
         }
     }
 
-    public void isStartDateIsBeforeEndDate(LocalDate start, LocalDate end) {
-        if (!(end == null)) {
-            if (start.isAfter(end)) {
+    public void isStartDateIsBeforeEndDate(LocalDate checkIn, LocalDate checkOut) {
+        if (!(checkOut == null)) {
+            if (checkIn.isAfter(checkOut)) {
                 throw new BusinessException(WRONG_START_OR_END_DATE, "Start date must be before end date");
             }
         }
     }
 
-    public void isStartDateBeforeCurrentDate(LocalDate absenceStart) {
-        if (absenceStart.isBefore(LocalDate.now())) {
+    public void isStartDateBeforeCurrentDate(LocalDate checkIn) {
+        if (checkIn.isBefore(LocalDate.now())) {
             throw new BusinessException(CHECK_IN_DATE_CANNOT_BE_IN_THE_PAST, "Start date cannot be in past");
         }
     }

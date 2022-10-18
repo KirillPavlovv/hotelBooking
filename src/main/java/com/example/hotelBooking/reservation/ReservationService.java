@@ -28,10 +28,8 @@ public class ReservationService {
         Customer customer = customerService.saveCustomer(reservationRequest);
         Reservation reservation = makeReservationObject(reservationRequest);
         reservation.setCustomerId(customer.getId());
-        List<Room> freeNumbersList = reservationRepository.getFreeNumbersList(reservationRequest.getCheckIn(),
-                reservationRequest.getCheckOut(), reservationRequest.getRoomType());
-        Random random = new Random();
-        reservation.setRoom(freeNumbersList.get(random.nextInt(freeNumbersList.size())).getNumber());
+        setRandomRoomNumber(reservationRequest.getCheckIn(), reservationRequest.getCheckOut(),
+                reservationRequest.getRoomType(), reservation);
         reservationRepository.saveReservation(reservation);
     }
 
@@ -48,8 +46,22 @@ public class ReservationService {
     }
 
     public void updateReservation(ReservationResponse reservationResponse) {
-        List<Room> freeNumbersList = reservationRepository.getFreeNumbersList(reservationResponse.getCheckIn(), reservationResponse.getCheckOut(),
-                reservationResponse.getRoomType());
+//        validationService.isStartDateIsBeforeEndDate(reservationResponse.getCheckIn(), reservationResponse.getCheckOut());
+//        validationService.isStartDateBeforeCurrentDate(reservationResponse.getCheckIn());
+        Reservation reservation = new Reservation();
+        reservation.setOpen(reservationResponse.getCheckIn());
+        reservation.setClose(reservationResponse.getCheckOut());
+        reservation.setId(reservationResponse.getId());
+        setRandomRoomNumber(reservationResponse.getCheckIn(), reservationResponse.getCheckOut(),
+                reservationResponse.getRoomType(), reservation);
+        reservationRepository.updateReservation(reservation);
 
+    }
+
+    private void setRandomRoomNumber(LocalDate checkIn, LocalDate checkOut, int roomType, Reservation reservation) {
+        List<Room> freeNumbersList = reservationRepository.getFreeNumbersList(checkIn, checkOut,
+                roomType);
+        Random random = new Random();
+        reservation.setRoom(freeNumbersList.get(random.nextInt(freeNumbersList.size())).getNumber());
     }
 }

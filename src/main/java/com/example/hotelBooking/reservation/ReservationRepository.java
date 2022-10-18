@@ -3,6 +3,7 @@ package com.example.hotelBooking.reservation;
 import com.example.hotelBooking.room.Room;
 import com.example.hotelBooking.roomtypes.BookedRoomsCount;
 import org.springframework.jdbc.core.DataClassRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -71,5 +72,12 @@ public class ReservationRepository {
                 VALUES(:id, :customerId, :room, :open, :close);
                 """, Map.of("id", reservation.getId(), "customerId", reservation.getCustomerId(),
                 "room", reservation.getRoom(), "open", reservation.getOpen(), "close", reservation.getClose()));
+    }
+
+    public void updateReservation(Reservation reservation) {
+        jdbcTemplate.update("""
+                UPDATE reservations SET open=:open, close=:close, room=:room
+                WHERE id=:id
+                """, new BeanPropertySqlParameterSource(reservation));
     }
 }
