@@ -6,6 +6,7 @@
         {{ errorMessage }}
       </div>
       <section>
+        <h3 style="font-style: italic; color: red">*It is possible to delete a reservation up to 3 days before the start of the reservation</h3>
         <form @submit.prevent="submitForm">
           <div class="form-control">
             <label for="personalCode">Personal Code</label>
