@@ -10,6 +10,9 @@
           <input type="date" id="checkOut" v-model="checkOut">
         <button class="btn btn-primary w-100 text-white mt-3" v-on:click="getAvailableRoomsCount"> Check available rooms </button>
       </div>
+      <div v-if="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
     </base-card>
     <section>
       <base-card>
@@ -47,36 +50,25 @@ export default {
       roomTypes: [],
       checkIn: '',
       checkOut: '',
+      errorMessage: null,
     }
   },
 
   methods: {
-    getRoomTypes() {
-      fetch('/room-types', {
-        credentials: "include"
-      })
-          .then(response => response.json())
-          .then(data => {
-            this.roomTypes = data;
-          })
-          .catch(error => console.error(error))
-    },
-
     getAvailableRoomsCount: async function() {
       fetch('/available-rooms?checkIn=' + this.checkIn + "&checkOut=" + this.checkOut, {
-        credentials: "include"
+        credentials: "include",
+        method: 'GET',
+
       })
           .then(response => response.json())
           .then(data => {
             this.roomTypes = data;
+            this.errorMessage = data.title;
           })
           .catch(error => console.error(error))
     },
   },
-
-  mounted() {
-    this.getRoomTypes()
-  }
 }
 </script>
 

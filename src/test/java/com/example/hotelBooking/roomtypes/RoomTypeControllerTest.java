@@ -32,15 +32,6 @@ class RoomTypeControllerTest {
             .setPrice(100.00);
 
     @Test
-    void getRoomTypes() throws Exception {
-        when(roomTypeService.getRoomTypes()).thenReturn(List.of(roomType));
-        mockMvc.perform(get("/room-types"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
-        verify(roomTypeService).getRoomTypes();
-    }
-
-    @Test
     void getAvailableRoomsCount() {
     }
 }

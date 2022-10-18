@@ -13,11 +13,6 @@ public class RoomTypeController {
     @Resource
     RoomTypeService roomTypeService;
 
-    @GetMapping("/room-types")
-    public List<RoomType> getRoomTypes() {
-        return roomTypeService.getRoomTypes();
-    }
-
     @GetMapping("/available-rooms")
     public List<RoomType> getAvailableRoomsCount(@RequestParam String checkIn, @RequestParam String checkOut) {
         return roomTypeService.getAvailableRoomsCount(checkIn, checkOut);
