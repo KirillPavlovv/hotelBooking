@@ -33,7 +33,7 @@ public class ReservationRepository {
                 new DataClassRowMapper<>(BookedRoomsCount.class));
     }
 
-    public List<Room>  getFreeNumbersList(LocalDate checkIn, LocalDate checkOut, int beds) {
+    public List<Room> getFreeNumbersList(LocalDate checkIn, LocalDate checkOut, int beds) {
         return jdbcTemplate.query("""
                 SELECT *
                 FROM unnest((SELECT  array_agg(number) FROM rooms WHERE beds = :beds)) number
@@ -49,11 +49,13 @@ public class ReservationRepository {
 
     public List<ReservationResponse> getReservations(LocalDate today) {
         return jdbcTemplate.query("""
-                SELECT r.id, first_name AS customerFirstName, last_name AS customerLastName, r.room AS roomNumber,
-                 r.open AS checkIn, r.close AS checkOut FROM customers c
-                    JOIN reservations r ON (c.id=r.customer_id)
-                    WHERE close >= DATE '2022-10-10'
-                    ORDER BY r.room, r.open;
+                SELECT r.id, first_name AS customerFirstName, last_name AS customerLastName, rm.beds AS roomType, r.room AS roomNumber,
+                       r.open AS checkIn, r.close AS checkOut
+                FROM reservations r
+                    JOIN customers c ON c.id=r.customer_id
+                    JOIN rooms rm ON r.room = rm.number
+                WHERE close >= :today
+                ORDER BY r.room, r.open;
                 """, Map.of("today", today), new DataClassRowMapper<>(ReservationResponse.class));
 
     }

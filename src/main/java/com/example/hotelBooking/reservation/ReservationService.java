@@ -3,6 +3,7 @@ package com.example.hotelBooking.reservation;
 import com.example.hotelBooking.customer.Customer;
 import com.example.hotelBooking.customer.CustomerService;
 import com.example.hotelBooking.room.Room;
+import com.example.hotelBooking.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,8 +19,12 @@ public class ReservationService {
     ReservationRepository reservationRepository;
     @Resource
     CustomerService customerService;
+    @Resource
+    ValidationService validationService;
 
     public void saveReservation(ReservationRequest reservationRequest) {
+        validationService.isStartDateBeforeCurrentDate(reservationRequest.getCheckIn());
+        validationService.isStartDateIsBeforeEndDate(reservationRequest.getCheckIn(), reservationRequest.getCheckOut());
         Customer customer = customerService.saveCustomer(reservationRequest);
         Reservation reservation = makeReservationObject(reservationRequest);
         reservation.setCustomerId(customer.getId());
@@ -40,5 +45,11 @@ public class ReservationService {
 
     public List<ReservationResponse> getReservations() {
         return reservationRepository.getReservations(LocalDate.now());
+    }
+
+    public void updateReservation(ReservationResponse reservationResponse) {
+        List<Room> freeNumbersList = reservationRepository.getFreeNumbersList(reservationResponse.getCheckIn(), reservationResponse.getCheckOut(),
+                reservationResponse.getRoomType());
+
     }
 }

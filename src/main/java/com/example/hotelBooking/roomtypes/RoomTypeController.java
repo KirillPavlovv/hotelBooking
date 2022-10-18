@@ -19,8 +19,9 @@ public class RoomTypeController {
     }
 
     @GetMapping("/available-rooms")
-    public List<RoomType> getRoomTypes(@RequestParam String checkIn, @RequestParam String checkOut) {
+    public List<RoomType> getAvailableRoomsCount(@RequestParam String checkIn, @RequestParam String checkOut) {
         return roomTypeService.getAvailableRoomsCount(checkIn, checkOut);
     }
 
 }
+

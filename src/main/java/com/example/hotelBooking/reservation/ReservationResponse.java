@@ -15,6 +15,7 @@ public class ReservationResponse {
     String customerFirstName;
     String customerLastName;
     int roomNumber;
+    int roomType;
     LocalDate checkIn;
     LocalDate checkOut;
 }

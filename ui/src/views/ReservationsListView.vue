@@ -5,38 +5,47 @@
         <div class="row">
           <h1> Reservations list </h1>
           <div>
-            <b-table striped hover :items="items" class="table">
+            <table striped hover class="table">
               <thead>
               <tr>
-                <th>{{ 'Customer' }}</th>
                 <th>{{ 'Room' }}</th>
+                <th>{{ 'Customer' }}</th>
                 <th>{{ 'Check-In' }}</th>
                 <th>{{ 'Check-Out' }}</th>
               </tr>
               </thead>
               <tbody>
               <template v-for="reservation in reservationList">
-                <tr :key="reservation.id">
-                  <td>{{ reservation.customerFirstName }} {{ reservation.customerLastName }}</td>
-                  <td>{{ reservation.roomNumber }}</td>
-                  <td>{{ formatDate(reservation.checkIn) }}</td>
-                  <td>{{ formatDate(reservation.checkOut) }}</td>
-
-                  <td>
-
-                    <button class="btn btn-secondary w-100 text-white" type="button">
-                      <Icon name='pencil'/>
-                    </button>
-                  </td>
-                  <td>
-                    <button class="btn btn-secondary w-100 text-white" type="button" v-on:click="deleteReservation(reservation.id)">
-                      <Icon name='trash'/>
-                    </button>
-                  </td>
+              <tr >
+                <td>
+                  <a v-on:click="changeReservation(reservation.id)" class="nav-link" href="#">
+                    {{ reservation.customerFirstName }} {{ reservation.customerLastName }}
+                  </a>
+                </td>
+                <td>{{ reservation.roomNumber }}</td>
+                <td>{{ formatDate(reservation.checkIn) }}</td>
+                <td>{{ formatDate(reservation.checkOut) }}</td>
+                <td>
+                  <button class="btn btn-secondary w-100 text-white" type="button"
+                          v-on:click="deleteReservation(reservation.id)">
+                    <Icon name='trash' />
+                  </button>
+                </td>
+              </tr>
+                <tr v-show="show === reservation.id">
+                  <change-reservation-component
+                      :id="reservation.id"
+                      :customer-first-name="reservation.customerFirstName"
+                      :customer-last-name="reservation.customerLastName"
+                      :room-number="reservation.roomNumber"
+                      :room-type="reservation.roomType"
+                      :check-in="reservation.checkIn"
+                      :check-out="reservation.checkOut"
+                  ></change-reservation-component>
                 </tr>
               </template>
               </tbody>
-            </b-table>
+            </table>
           </div>
         </div>
       </div>
@@ -47,17 +56,27 @@
 
 <script>
 
+
 import Icon from "@/components/Icon";
+import ChangeReservationComponent from "@/components/reservation/ChangeReservationComponent";
 
 export default {
   name: "ReservationsListView",
   components: {
-    Icon
+    Icon,
+    ChangeReservationComponent
   },
   data() {
     return {
       reservationList: [],
+      showReservationChangeForm:false,
+      selectedReservationId: '',
     }
+  },
+  computed: {
+    show() {
+      return this.selectedReservationId;
+    },
   },
   methods: {
     getAllReservations() {
@@ -70,8 +89,17 @@ export default {
           })
           .catch(error => console.error(error))
     },
+
+    changeReservation(id) {
+      if (!(this.selectedReservationId === '')) {
+        this.selectedReservationId = '';
+      } else {
+        this.selectedReservationId = id;
+      }
+    },
+
     deleteReservation(id) {
-      fetch('/deleteReservation?id=' + id,{
+      fetch('/deleteReservation?id=' + id, {
         credentials: 'include',
         method: 'DELETE'
       })
@@ -80,13 +108,20 @@ export default {
           })
     },
   },
+
   mounted() {
     this.getAllReservations()
   }
+
 
 }
 </script>
 
 <style scoped>
+.nav-link {
+  border-bottom: none;
+  background-color: white;
+  border: white;
+}
 
 </style>

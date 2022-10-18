@@ -13,16 +13,24 @@ public class ReservationController {
     ReservationService reservationService;
     @Resource
     ReservationRepository reservationRepository;
+
     @PostMapping("/reservation")
     public void saveReservation(@RequestBody ReservationRequest reservationRequest) {
         reservationService.saveReservation(reservationRequest);
     }
+
     @GetMapping("/reservationsList")
     public List<ReservationResponse> getReservations() {
         return reservationService.getReservations();
     }
+
     @DeleteMapping("/deleteReservation")
     public void deleteReservation(@RequestParam UUID id) {
         reservationRepository.deleteReservation(id);
+    }
+
+    @PutMapping("/updateReservation")
+    public void updateReservation(@RequestBody ReservationResponse reservationResponse) {
+        reservationService.updateReservation(reservationResponse);
     }
 }

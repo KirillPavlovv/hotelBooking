@@ -5,24 +5,27 @@
     <div> {{ description }}</div>
     <div> Available rooms: {{ roomsCount }}</div>
     <div class="actions">
-      <button class="btn btn-primary w-50 text-white mt-3" v-if="!(roomsCount === 0)" v-on:click="sendData"> Book a room </button>
+      <button class="btn btn-primary w-50 text-white mt-3" v-if="!(roomsCount === 0)" v-on:click="sendData"> Book a
+        room
+      </button>
     </div>
     <div class="reservation" v-if="showReservationForm">
-      <reservation-component
-      :check-in="checkIn"
-      :check-out="checkOut"
-      :id="id"
-      ></reservation-component>
+      <reservation-registration-component-component
+          :check-in="checkIn"
+          :check-out="checkOut"
+          :id="id"
+      ></reservation-registration-component-component>
     </div>
   </li>
 </template>
 
 <script>
-import ReservationComponent from "@/components/reservation/ReservationComponent";
+import ReservationRegistrationComponentComponent from "@/components/reservation/ReservationRegistrationComponent";
 import EventBus from "@/components/event-bus";
+
 export default {
   name: "RoomItem",
-  components: {ReservationComponent},
+  components: {ReservationRegistrationComponentComponent},
   props: ['id', 'description', 'pictureName', 'price', 'roomsCount', 'checkIn', 'checkOut'],
   data() {
     return {
@@ -36,7 +39,7 @@ export default {
     },
   },
   mounted() {
-    EventBus.$on('reservationFormClosed', ()=>{
+    EventBus.$on('reservationFormClosed', () => {
       this.showReservationForm = false;
     })
   }

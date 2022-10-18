@@ -3,6 +3,9 @@
     <section>
       <base-card>
         <h2>Fill up the reservation form</h2>
+        <div v-if="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
         <section>
           <form @submit.prevent="submitForm">
             <div>
@@ -47,11 +50,13 @@ export default {
         email: '',
         roomType: this.id,
       },
+      errorMessage: null,
     }
 
   },
   methods: {
     submitForm() {
+      this.errorMessage = null;
       fetch('/reservation', {
         credentials: 'include',
         method: 'POST',
@@ -60,7 +65,10 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-          .then(response => console.log(response))
+          .then(response => response.json())
+          .then(data => {
+            this.errorMessage = data.title;
+          })
     },
 
     closeReservationForm() {
