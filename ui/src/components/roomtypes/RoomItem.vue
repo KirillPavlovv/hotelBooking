@@ -10,22 +10,22 @@
       </button>
     </div>
     <div class="reservation" v-if="showReservationForm">
-      <reservation-registration-component-component
+      <reservation-component
           :check-in="checkIn"
           :check-out="checkOut"
           :id="id"
-      ></reservation-registration-component-component>
+      ></reservation-component>
     </div>
   </li>
 </template>
 
 <script>
-import ReservationRegistrationComponentComponent from "@/components/reservation/ReservationRegistrationComponent";
+import ReservationComponent from "@/components/reservation/ReservationComponent";
 import EventBus from "@/components/event-bus";
 
 export default {
   name: "RoomItem",
-  components: {ReservationRegistrationComponentComponent},
+  components: {ReservationComponent},
   props: ['id', 'description', 'pictureName', 'price', 'roomsCount', 'checkIn', 'checkOut'],
   data() {
     return {

@@ -36,7 +36,7 @@ import BaseCard from "@/components/base/BaseCard";
 import EventBus from "@/components/event-bus";
 
 export default {
-  name: "ReservationView",
+  name: "ReservationComponent",
   components: {BaseCard},
   props: ['checkIn', 'checkOut', 'id'],
   data() {
