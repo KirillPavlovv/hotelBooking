@@ -4,17 +4,19 @@
     <section><h2>Check available days</h2></section>
     <base-card>
       <div class="form-control">
-          <label for="checkIn">Check-in</label>
-          <input type="date" id="checkIn" v-model="checkIn" class="mb-2">
-          <label for="checkOut">Check-out</label>
-          <input type="date" id="checkOut" v-model="checkOut">
-        <button class="btn btn-primary w-100 text-white mt-3" v-on:click="getAvailableRoomsCount"> Check available rooms </button>
+        <label for="checkIn">Check-in</label>
+        <input type="date" id="checkIn" v-model="checkIn" class="mb-2">
+        <label for="checkOut">Check-out</label>
+        <input type="date" id="checkOut" v-model="checkOut">
+        <button class="btn btn-primary w-100 text-white mt-3" v-on:click="getAvailableRoomsCount"> Check available
+          rooms
+        </button>
       </div>
-      <div v-if="errorMessage" class="alert alert-danger" role="alert">
+      <div v-show="errorMessage" class="alert alert-danger" role="alert">
         {{ errorMessage }}
       </div>
     </base-card>
-    <section>
+    <section v-show="roomTypes.length>0">
       <base-card>
         <div class="controls"></div>
         <ul>
@@ -55,11 +57,10 @@ export default {
   },
 
   methods: {
-    getAvailableRoomsCount: async function() {
+    getAvailableRoomsCount: async function () {
       fetch('/available-rooms?checkIn=' + this.checkIn + "&checkOut=" + this.checkOut, {
         credentials: "include",
         method: 'GET',
-
       })
           .then(response => response.json())
           .then(data => {
