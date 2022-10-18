@@ -1,56 +1,54 @@
 <template>
-  <div class="container">
-    <div class="card mt-3 mb-3">
-      <div class="card-body">
-        <div class="row">
-          <h1> Reservations list </h1>
-          <div>
-            <table striped hover class="table">
-              <thead>
-              <tr>
-                <th>{{ 'Room' }}</th>
-                <th>{{ 'Customer' }}</th>
-                <th>{{ 'Check-In' }}</th>
-                <th>{{ 'Check-Out' }}</th>
-              </tr>
-              </thead>
-              <tbody>
-              <template v-for="reservation in reservationList">
-              <tr >
-                <td>
-                  <a v-on:click="changeReservation(reservation.id)" class="nav-link" href="#">
-                    {{ reservation.customerFirstName }} {{ reservation.customerLastName }}
-                  </a>
-                </td>
-                <td>{{ reservation.roomNumber }}</td>
-                <td>{{ formatDate(reservation.checkIn) }}</td>
-                <td>{{ formatDate(reservation.checkOut) }}</td>
-                <td>
-                  <button class="btn btn-secondary w-100 text-white" type="button"
-                          v-on:click="deleteReservation(reservation.id)">
-                    <Icon name='trash' />
-                  </button>
-                </td>
-              </tr>
-                <tr v-show="show === reservation.id">
-                  <change-reservation-component
-                      :id="reservation.id"
-                      :customer-first-name="reservation.customerFirstName"
-                      :customer-last-name="reservation.customerLastName"
-                      :room-number="reservation.roomNumber"
-                      :room-type="reservation.roomType"
-                      :check-in="reservation.checkIn"
-                      :check-out="reservation.checkOut"
-                  ></change-reservation-component>
+          <div class="row">
+            <h1> Reservations list </h1>
+            <div>
+              <base-card>
+              <table striped hover class="table">
+                <thead>
+                <tr>
+                  <th>{{ 'Customer' }}</th>
+                  <th>{{ 'Room' }}</th>
+                  <th>{{ 'Check-In' }}</th>
+                  <th>{{ 'Check-Out' }}</th>
                 </tr>
-              </template>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                <template v-for="reservation in reservationList">
+                  <tr>
+                    <td>
+                      <a v-on:click="changeReservation(reservation.id)" class="nav-link" href="#">
+                        {{ reservation.customerFirstName }} {{ reservation.customerLastName }}
+                      </a>
+                    </td>
+                    <td>{{ reservation.roomNumber }}</td>
+                    <td>{{ formatDate(reservation.checkIn) }}</td>
+                    <td>{{ formatDate(reservation.checkOut) }}</td>
+                    <td>
+                      <button class="btn btn-secondary w-100 text-white" type="button"
+                              v-on:click="deleteReservation(reservation.id)">
+                        <Icon name='trash'/>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr v-show="show === reservation.id">
+                    <td colspan="10" style="text-align: left">
+                    <change-reservation-component
+                        :id="reservation.id"
+                        :customer-first-name="reservation.customerFirstName"
+                        :customer-last-name="reservation.customerLastName"
+                        :room-number="reservation.roomNumber"
+                        :room-type="reservation.roomType"
+                        :check-in="reservation.checkIn"
+                        :check-out="reservation.checkOut"
+                    ></change-reservation-component>
+                    </td>
+                  </tr>
+                </template>
+                </tbody>
+              </table>
+              </base-card>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </template>
 
@@ -59,17 +57,19 @@
 
 import Icon from "@/components/Icon";
 import ChangeReservationComponent from "@/components/reservation/ChangeReservationComponent";
+import BaseCard from "@/components/base/BaseCard";
 
 export default {
   name: "ReservationsListView",
   components: {
+    BaseCard,
     Icon,
     ChangeReservationComponent
   },
   data() {
     return {
       reservationList: [],
-      showReservationChangeForm:false,
+      showReservationChangeForm: false,
       selectedReservationId: '',
     }
   },

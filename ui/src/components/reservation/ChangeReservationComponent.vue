@@ -1,37 +1,35 @@
 <template>
   <div>
-    <section>
-      <base-card>
-        <h2>Change reservation</h2>
-        <section>
-          <form @submit.prevent="submitForm">
-            <div class="form-control">
-              <label for="firstName">Customer name: {{ reservation.customerFirstName }}
-                {{ reservation.customerLastName }}</label>
-              <label for="checkIn">Check-in: {{ formatDate(reservation.checkIn) }} </label>
-              <input type="date" id="checkIn" v-model="reservation.checkIn" class="mb-2">
-              <label for="checkOut">Check-out: {{ formatDate(reservation.checkOut) }}</label>
-              <input type="date" id="checkOut" v-model="reservation.checkOut" class="mb-2">
-              <div class="input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <label for="roomTypeId">Room type</label>
-                </div>
-                <select class="custom-select" id="roomTypeId" v-model="reservation.roomType">
-                  <option selected>Choose...</option>
-                  <option value="1">One-bed room</option>
-                  <option value="2">Two-bed room</option>
-                  <option value="3">Three/bed room</option>
-                </select>
+    <base-card>
+      <h3>Change reservation</h3>
+      <section>
+        <form @submit.prevent="submitForm">
+          <div class="form-control">
+            <label for="firstName">Customer name: {{ reservation.customerFirstName }}
+              {{ reservation.customerLastName }}</label>
+            <label for="checkIn">Check-in: {{ formatDate(reservation.checkIn) }} </label>
+            <input type="date" id="checkIn" v-model="reservation.checkIn" class="mb-2">
+            <label for="checkOut">Check-out: {{ formatDate(reservation.checkOut) }}</label>
+            <input type="date" id="checkOut" v-model="reservation.checkOut" class="mb-2">
+            <div class="input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <label for="roomTypeId">Room type:</label>
               </div>
-              <div v-show="errorMessage" class="alert alert-danger" role="alert">
-                {{ errorMessage }}
-              </div>
-              <button class="btn btn-primary w-25 text-white mt-3">Reserve</button>
+              <select class="custom-select" id="roomTypeId" v-model="reservation.roomType">
+                <option selected>Choose...</option>
+                <option value="1">One-bed room</option>
+                <option value="2">Two-bed room</option>
+                <option value="3">Three-bed room</option>
+              </select>
             </div>
-          </form>
-        </section>
-      </base-card>
-    </section>
+            <div v-show="errorMessage" class="alert alert-danger" role="alert">
+              {{ errorMessage }}
+            </div>
+            <button class="btn btn-primary w-50 text-white mt-3">Reserve</button>
+          </div>
+        </form>
+      </section>
+    </base-card>
   </div>
 </template>
 

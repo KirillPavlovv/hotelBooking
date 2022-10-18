@@ -1,10 +1,9 @@
 <template>
   <header>
     <nav>
-     <router-link to="/">Choose a Room</router-link>
-      <ul>
-        <router-link to="/all-reservations"> Reservations</router-link>
-      </ul>
+      <router-link to="/">Choose a Room</router-link>
+      <router-link to="/cancelation">Cancel reservation</router-link>
+      <router-link to="/all-reservations"> Reservations</router-link>
     </nav>
   </header>
 </template>
@@ -35,8 +34,6 @@ header a {
 
 a:active,
 a:hover,
-
-
 h1 {
   margin: 0;
 }
@@ -48,22 +45,11 @@ h1 a {
 
 h1 a:hover,
 h1 a:active,
-
-
 header nav {
   width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
 

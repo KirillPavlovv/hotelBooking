@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ReservationComponent from "@/components/reservation/ReservationComponent";
+import ReservationComponent from "@/components/reservation/MakeReservationComponent";
 import EventBus from "@/components/event-bus";
 
 export default {

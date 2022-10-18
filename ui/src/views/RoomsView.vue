@@ -1,7 +1,6 @@
 <template>
   <div>
-    <section><h1>ROOMS</h1></section>
-    <section><h2>Check available days</h2></section>
+    <section><h2>Check available rooms</h2></section>
     <base-card>
       <div class="form-control">
         <label for="checkIn">Check-in</label>
