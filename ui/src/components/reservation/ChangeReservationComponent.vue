@@ -23,6 +23,9 @@
                   <option value="3">Three/bed room</option>
                 </select>
               </div>
+              <div v-show="errorMessage" class="alert alert-danger" role="alert">
+                {{ errorMessage }}
+              </div>
               <button class="btn btn-primary w-25 text-white mt-3">Reserve</button>
             </div>
           </form>
@@ -49,7 +52,8 @@ export default {
         customerLastName: this.customerLastName,
         roomNumber: this.roomNumber,
         roomType: this.roomType
-      }
+      },
+      errorMessage: false,
     }
   },
 
@@ -60,6 +64,7 @@ export default {
       }
     },
     sendChangeRequest() {
+      this.errorMessage = false;
       fetch('/updateReservation', {
         credentials: 'include',
         method: 'PUT',
@@ -68,7 +73,10 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-          .then(response => console.log(response));
+          .then(response => response.json())
+          .then(data => {
+            this.errorMessage = data.title;
+          })
     },
   },
 }

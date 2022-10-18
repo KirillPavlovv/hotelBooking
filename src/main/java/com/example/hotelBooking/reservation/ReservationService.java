@@ -46,8 +46,7 @@ public class ReservationService {
     }
 
     public void updateReservation(ReservationResponse reservationResponse) {
-//        validationService.isStartDateIsBeforeEndDate(reservationResponse.getCheckIn(), reservationResponse.getCheckOut());
-//        validationService.isStartDateBeforeCurrentDate(reservationResponse.getCheckIn());
+        validationService.isStartDateIsBeforeEndDate(reservationResponse.getCheckIn(), reservationResponse.getCheckOut());
         Reservation reservation = new Reservation();
         reservation.setOpen(reservationResponse.getCheckIn());
         reservation.setClose(reservationResponse.getCheckOut());
