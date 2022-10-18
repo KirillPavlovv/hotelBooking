@@ -9,11 +9,9 @@
         <form @submit.prevent="submitForm">
           <div class="form-control">
             <label for="personalCode">Personal Code</label>
-            <input type="text" id="personalCode" v-model.trim="cancelRequest.personalCode">
-            <label for="email">Email address</label>
-            <input type="email" id="email" v-model.trim="cancelRequest.email">
+            <input type="text" id="personalCode" v-model.trim="personalCode">
           </div>
-          <button class="btn btn-primary w-50 text-white mt-3">
+          <button class="btn btn-primary w-50 text-white mt-3" v-on:click="submitForm">
             Cancel registration
           </button>
         </form>
@@ -31,16 +29,26 @@ export default {
 
   data() {
     return {
-      cancelRequest: {
-        personalCode: null,
-        email: null
-      },
+      personalCode: null,
       errorMessage: false
     }
   },
   methods: {
     submitForm() {
-      console.log(this.cancelRequest)
+      fetch('/cancel?personalCode=' +this.personalCode, {
+        credentials: "include",
+        method: 'DELETE',
+        body: JSON.stringify(this.personalCode),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+          .then(response => response.json())
+          .then(data => {
+            // this.errorMessage = data.title;
+          })
+          .catch(error => console.error(error));
+
     },
   }
 }

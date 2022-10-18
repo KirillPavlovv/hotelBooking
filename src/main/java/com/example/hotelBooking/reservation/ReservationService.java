@@ -1,6 +1,7 @@
 package com.example.hotelBooking.reservation;
 
 import com.example.hotelBooking.customer.Customer;
+import com.example.hotelBooking.customer.CustomerRepository;
 import com.example.hotelBooking.customer.CustomerService;
 import com.example.hotelBooking.room.Room;
 import com.example.hotelBooking.validation.ValidationService;
@@ -21,6 +22,8 @@ public class ReservationService {
     CustomerService customerService;
     @Resource
     ValidationService validationService;
+    @Resource
+    CustomerRepository customerRepository;
 
     public void saveReservation(ReservationRequest reservationRequest) {
         validationService.isStartDateBeforeCurrentDate(reservationRequest.getCheckIn());
@@ -62,5 +65,11 @@ public class ReservationService {
                 roomType);
         Random random = new Random();
         reservation.setRoom(freeNumbersList.get(random.nextInt(freeNumbersList.size())).getNumber());
+    }
+
+    public void deleteReservation(String personalCode) {
+        UUID customerId = customerRepository.findByPersonalCode(personalCode);
+        LocalDate date = LocalDate.now().plusDays(3);
+        reservationRepository.deleteByCustomerId(customerId, date);
     }
 }

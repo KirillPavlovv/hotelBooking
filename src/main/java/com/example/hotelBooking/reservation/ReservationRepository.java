@@ -80,4 +80,10 @@ public class ReservationRepository {
                 WHERE id=:id
                 """, new BeanPropertySqlParameterSource(reservation));
     }
+
+    public void deleteByCustomerId(UUID customerId, LocalDate date) {
+        jdbcTemplate.update("""
+                DELETE FROM reservations WHERE customer_id=:customerId AND open>:date
+                """, Map.of("customerId", customerId, "date", date));
+    }
 }

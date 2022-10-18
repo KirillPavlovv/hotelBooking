@@ -33,4 +33,8 @@ public class ReservationController {
     public void updateReservation(@RequestBody ReservationResponse reservationResponse) {
         reservationService.updateReservation(reservationResponse);
     }
+    @DeleteMapping("/cancel")
+    public void deleteReservation(@RequestParam String personalCode) {
+        reservationService.deleteReservation(personalCode);
+    }
 }
