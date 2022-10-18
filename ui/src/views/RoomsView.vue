@@ -40,6 +40,7 @@
 <script>
 import RoomItem from "@/components/roomtypes/RoomItem";
 import BaseCard from "@/components/base/BaseCard";
+import EventBus from "@/components/event-bus";
 
 export default {
   name: "Rooms",
@@ -67,10 +68,16 @@ export default {
             this.roomTypes = data;
             this.errorMessage = data.title;
           })
-          .catch(error => console.error(error))
+          .catch(error => console.error(error));
     },
   },
+  mounted() {
+    EventBus.$on('reservationFormClosed', ()=>{
+      this.getAvailableRoomsCount();
+    })
+  }
 }
+
 </script>
 
 <style scoped>

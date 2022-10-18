@@ -69,6 +69,7 @@ export default {
           .then(data => {
             this.errorMessage = data.title;
           })
+      EventBus.$emit('reservationFormClosed')
     },
 
     closeReservationForm() {
