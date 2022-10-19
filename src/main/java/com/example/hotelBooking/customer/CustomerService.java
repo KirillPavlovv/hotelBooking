@@ -23,4 +23,11 @@ public class CustomerService {
         customerRepository.saveCustomer(customer);
         return customer;
     }
+
+    public Customer updateCustomer(ReservationRequest reservationRequest) {
+        Customer customer = customerRepository.findByPersonalCode(reservationRequest.getPersonalCode());
+        customerRepository.updateCustomer(reservationRequest, customer.getPersonalCode());
+
+        return customer;
+    }
 }

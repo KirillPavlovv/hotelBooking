@@ -28,11 +28,19 @@ public class ReservationService {
     public void saveReservation(ReservationRequest reservationRequest) {
         validationService.isStartDateBeforeCurrentDate(reservationRequest.getCheckIn());
         validationService.isStartDateIsBeforeEndDate(reservationRequest.getCheckIn(), reservationRequest.getCheckOut());
-        Customer customer = customerService.saveCustomer(reservationRequest);
+        Boolean isCustomerExist = customerRepository.customerExists(reservationRequest.personalCode);
         Reservation reservation = makeReservationObject(reservationRequest);
-        reservation.setCustomerId(customer.getId());
         setRandomRoomNumber(reservationRequest.getCheckIn(), reservationRequest.getCheckOut(),
                 reservationRequest.getRoomType(), reservation);
+        Customer customer;
+        if (isCustomerExist){
+            customer = customerService.updateCustomer(reservationRequest);
+
+        }
+        else{
+            customer = customerService.saveCustomer(reservationRequest);
+        }
+        reservation.setCustomerId(customer.getId());
         reservationRepository.saveReservation(reservation);
     }
 
@@ -68,8 +76,8 @@ public class ReservationService {
     }
 
     public void deleteReservation(String personalCode) {
-        UUID customerId = customerRepository.findByPersonalCode(personalCode);
+        Customer customer = customerRepository.findByPersonalCode(personalCode);
         LocalDate date = LocalDate.now().plusDays(3);
-        reservationRepository.deleteByCustomerId(customerId, date);
+        reservationRepository.deleteByCustomerId(customer.getId(), date);
     }
 }

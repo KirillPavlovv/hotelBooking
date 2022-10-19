@@ -71,10 +71,10 @@ INSERT INTO rooms (number, beds) VALUES (19, 3);
 INSERT INTO rooms (number, beds) VALUES (20, 3);
 
 INSERT INTO reservations (id, customer_id, room, open, close)
-VALUES ('28d1111a-e42c-418f-9253-3c509839ce3c', '58fce113-5110-437c-b548-0750b01836f4', 1, '10-08-2022', '10-10-2022');
+VALUES ('28d1111a-e42c-418f-9253-3c509839ce3c', '58fce113-5110-437c-b548-0750b01836f4', 1, '10-08-2022', '11-10-2022');
 INSERT INTO reservations (id, customer_id, room, open, close)
-VALUES ('563b6b99-a251-427b-924b-3f661efa7643', 'b680108f-988d-4bcd-b2e5-33d91b84d0c0', 19, '10-10-2022', '10-15-2022');
+VALUES ('563b6b99-a251-427b-924b-3f661efa7643', 'b680108f-988d-4bcd-b2e5-33d91b84d0c0', 19, '10-20-2022', '10-30-2022');
 INSERT INTO reservations (id, customer_id, room, open, close)
-VALUES ('bd8761ee-f9b2-4479-a413-a40ba29e2de0', '5e536974-54be-45fa-845f-33f38be7023a', 11, '10-11-2022', '10-19-2022');
+VALUES ('bd8761ee-f9b2-4479-a413-a40ba29e2de0', '5e536974-54be-45fa-845f-33f38be7023a', 11, '11-17-2022', '10-31-2022');
 
 

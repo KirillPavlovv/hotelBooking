@@ -1,10 +1,11 @@
 package com.example.hotelBooking.customer;
 
+import com.example.hotelBooking.reservation.ReservationRequest;
+import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class CustomerRepository {
@@ -23,9 +24,21 @@ public class CustomerRepository {
                 "personalCode", customer.getPersonalCode(), "email", customer.getEmail()));
     }
 
-    public UUID findByPersonalCode(String personalCode) {
+    public Customer findByPersonalCode(String personalCode) {
         return jdbcTemplate.queryForObject("""
-                SELECT id  FROM customers WHERE personal_code=:personalCode
-                """, Map.of("personalCode", personalCode), UUID.class);
+                SELECT * FROM customers WHERE personal_code=:personalCode
+                """, Map.of("personalCode", personalCode), new DataClassRowMapper<>(Customer.class));
+    }
+
+    public Boolean customerExists(String personalCode) {
+        return jdbcTemplate.queryForObject("SELECT EXISTS(SELECT FROM customers WHERE personal_code = :personalCode)", Map.of("personalCode", personalCode), Boolean.class);
+    }
+
+    public void updateCustomer(ReservationRequest reservationRequest, String personalCode) {
+        jdbcTemplate.update("""
+                UPDATE customers SET first_name=:firstName, last_name=:lastName, email=:email
+                WHERE personal_code=:personalCode
+                """, Map.of("firstName", reservationRequest.getFirstName(), "lastName", reservationRequest.getLastName(),
+                "email", reservationRequest.getEmail(), "personalCode", personalCode));
     }
 }
